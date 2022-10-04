@@ -59,7 +59,16 @@ public class Interface {
         }
 
         if (!Data.currentAdmin.getRadiusAdmin()){
-            System.out.println("You don't have the permission to do this.");
+            System.out.println("Please input your current password");
+            String oldPass = sc.nextLine().trim();
+            if (!Data.currentAdmin.getPassword().equals(oldPass)){
+                System.out.println("Wrong password, try again.");
+                return;
+            }
+            System.out.println("Please input your new password.");
+            String newPass = sc.nextLine().trim();
+            Data.currentUser.setPassword(newPass);
+            System.out.println("Successfully changed your password.");
             return;
         }
 
@@ -94,6 +103,8 @@ public class Interface {
         txt += "help - displays this message.";
         return txt;
     }
+
+
 
     public static void insert(){
         String sql = "";
